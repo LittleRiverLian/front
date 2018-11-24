@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.etl.**.controller"/>
+
+    <!-- 配置注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- FreeMarker视图解析器     默认视图 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="requestContextAttribute" value="request"/>
+        <property name="cache" value="false"/>
+        <!--<property name="viewNames" value="*.ftl" />-->
+        <!-- 配置文件类型，freemaker文件类型标准是ftl -->
+        <property name="suffix" value=".ftl"/>
+        <!-- 如果有多种解析器，添加这一行，让freemaker解析器优先 -->
+        <!--<property name="order" value="0"/>-->
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <!-- 模板文件的存放路径 -->
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+        <!-- 如果使用freemaker的自定义标签，这里需要这一段配置
+        <property name="freemarkerVariables">
+            <map>
+                这里配置的是自定义标签，有多个也一起在这里配置
+                <entry key="shiro" value-ref="shiroTag" />
+            </map>
+        </property>
+         -->
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">${template_update_delay}</prop>
+                <prop key="tag_syntax">${tag_syntax}</prop><!-- 设置标签类型 两种：[] 和 <> 。[] 这种标记解析要快些 -->
+                <prop key="default_encoding">${default_encoding}</prop>
+                <prop key="output_encoding">${output_encoding}</prop>
+                <prop key="locale">${locale}</prop>
+                <prop key="date_format">${date_format}</prop>
+                <prop key="time_format">${time_format}</prop>
+                <prop key="datetime_format">${datetime_format}</prop>
+                <prop key="number_format">${number_format}</prop><!-- 设置数字格式 以免出现 000.00 -->
+                <prop key="classic_compatible">${classic_compatible}</prop>
+                <!-- 可以满足一般需要。默认情况变量为null则替换为空字符串，如果需要自定义，写上${empty!"EmptyValue of fbysss"}的形式即可  -->
+                <prop key="template_exception_handler">
+                    ${template_exception_handler}
+                </prop><!-- ignore,debug,html_debug,rethrow -->
+            </props>
+        </property>
+    </bean>
+
+</beans>
