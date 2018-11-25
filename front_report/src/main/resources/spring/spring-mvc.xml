@@ -16,6 +16,9 @@
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
 
+    <context:property-placeholder location="classpath*:properties/freemaker.properties"/>
+
+
     <!-- FreeMarker视图解析器     默认视图 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
@@ -53,9 +56,7 @@
                 <prop key="number_format">${number_format}</prop><!-- 设置数字格式 以免出现 000.00 -->
                 <prop key="classic_compatible">${classic_compatible}</prop>
                 <!-- 可以满足一般需要。默认情况变量为null则替换为空字符串，如果需要自定义，写上${empty!"EmptyValue of fbysss"}的形式即可  -->
-                <prop key="template_exception_handler">
-                    ${template_exception_handler}
-                </prop><!-- ignore,debug,html_debug,rethrow -->
+                <prop key="template_exception_handler">${template_exception_handler}</prop><!-- ignore,debug,html_debug,rethrow -->
             </props>
         </property>
     </bean>
