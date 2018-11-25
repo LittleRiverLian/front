@@ -12,7 +12,6 @@ public class FirstViewController {
     public String index(String name, Model model) {
         model.addAttribute("message", "hello");
         model.addAttribute("name", "111111");
-
         return "/reportList";
     }
 }

@@ -18,6 +18,9 @@
 
     <context:property-placeholder location="classpath*:properties/freemaker.properties"/>
 
+    <mvc:resources mapping="/static/css/**" location="/statics/css/"/>
+    <mvc:resources mapping="/static/js/**" location="/statics/js/"/>
+    <mvc:resources mapping="/static/img/**" location="/statics/img/"/>
 
     <!-- FreeMarker视图解析器     默认视图 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
@@ -61,4 +64,15 @@
         </property>
     </bean>
 
+
+    <!-- 文件上传 start 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 文件大小最大值 上传文件大小限制为10M，10*1024*1024 -->
+        <property name="maxUploadSize" value="10485760"/>
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="4096"/>
+    </bean>
+    <!--文件上传 end-->
 </beans>
