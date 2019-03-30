@@ -8,16 +8,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="dubbo" />
         <module name="front_dubbo" />
+        <module name="front_hadoop" />
         <module name="front_report" />
         <module name="front_schedule" />
+        <module name="front_workflow" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="dubbo" target="1.5" />
       <module name="front" target="1.8" />
       <module name="front_dubbo" target="1.5" />
+      <module name="front_hadoop" target="1.8" />
       <module name="front_report" target="1.8" />
+      <module name="front_root" target="1.8" />
       <module name="front_schedule" target="1.8" />
+      <module name="front_workflow" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

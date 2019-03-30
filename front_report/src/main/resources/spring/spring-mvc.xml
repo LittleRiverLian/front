@@ -20,7 +20,9 @@
 
     <mvc:resources mapping="/static/css/**" location="/statics/css/"/>
     <mvc:resources mapping="/static/js/**" location="/statics/js/"/>
+    <mvc:resources mapping="/static/json/**" location="/statics/json/"/>
     <mvc:resources mapping="/static/img/**" location="/statics/img/"/>
+
 
     <!-- FreeMarker视图解析器     默认视图 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
